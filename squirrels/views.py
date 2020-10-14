@@ -9,10 +9,28 @@ def sightings(request):
     all_squirrels = Squirrel.objects.all()
     data = ['Unique_Squirrel_ID','Date','X','Y']
     context = {
-            'Squirrels': squirrels,
-            'fields':fields,
+            'Squirrels': all_squirrels,
+            'fields':data,
     }
-    return(render, 'squirrels/sightings.html',context)
+    return render(request, 'squirrels/sightings.html',context)
+
+def update_squirrel(request, Unique_Squirrel_ID):
+    squirrel = Squirrel.objects.get(Unique_Squirrel_ID=Unique_Squirrel_ID)
+    if request.method == 'POST':
+        form = SForm(request.POST, instance=squirrel)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/squirrel/{Unique_Squirrel_ID}'
+    else:
+        form = SForm(instance=squirrel)
+
+    context = {
+        'form':form,
+    }
+
+    return render(request,'tracking/update.html',context)
+
+
 
 def sightings_add(request):
     if request.method == 'POST':
@@ -21,16 +39,24 @@ def sightings_add(request):
             form.save()
             return JsonResponse({})
         else:
-            return JsonResponse({'errors':form.errors},status400)
+            return JsonResponse({'errors':form.errors},status=400)
     
     return JsonResponse({})
 
-<<<<<<< HEAD
- 
+def sightings_stats(request):
 
- Create your views here.
-=======
+    running_count = Squirrel.objects.values('Running').order_by('Running').annotate(run_count=Count('Running'))
+    chasing_count = Squirrel.objects.values('Chasing').order_by('Chasing').annotate(run_count=Count('Chasing'))
+    climbing_count = Squirrel.objects.values('Climbing').order_by('Climbing').annotate(run_count=Count('Climbing'))
+    approaches_count = Squirrel.objects.values('Approaches').order_by('Approaches').annotate(run_count=Count('Approaches'))
+    foraging_count = Squirrel.objects.values('Foraging').order_by('Foraging').annotate(run_count=Count('Foraging'))
 
+    context = {
+            'Running': running_count,
+            'Chasing': chasing_count,
+            'Climbing': climbing_count,
+            'Approaches': approaches_count,
+            'Foraging': foraging_count,
+    }
 
-# Create your views here.
->>>>>>> be4eae32c3e33b4a915dd3259fe9004ecbeb3da8
+    return render(request,'squirrels/stats.html',context)

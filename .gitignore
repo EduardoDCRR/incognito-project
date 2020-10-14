@@ -1,3 +1,21 @@
 db.sqlite3
 *.pyc
+**/__pycache_/**
+*.cpython-38.pyc_
+*.pyc
+__pycache__/
+local_settings.py
+__pycache__/
+*.py[cod]
+venv
 __pycache__
+
+# Editor & OS
+.DS_Store
+*.swp
+
+# Media & Static
+media/*
+!media/.gitkeep
+static/*
+!static/.gitkeep

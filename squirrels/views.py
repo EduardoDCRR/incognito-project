@@ -25,6 +25,12 @@ def sightings_add(request):
     
     return JsonResponse({})
 
+<<<<<<< HEAD
  
 
  Create your views here.
+=======
+
+
+# Create your views here.
+>>>>>>> be4eae32c3e33b4a915dd3259fe9004ecbeb3da8

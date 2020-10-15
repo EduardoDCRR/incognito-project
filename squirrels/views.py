@@ -3,7 +3,11 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from .models import Squirrel
-from .form import SForm
+#from .form import SForm
+
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the poll index.")
 
 def sightings(request):
     all_squirrels = Squirrel.objects.all()
@@ -20,7 +24,7 @@ def update_squirrel(request, Unique_Squirrel_ID):
         form = SForm(request.POST, instance=squirrel)
         if form.is_valid():
             form.save()
-            return redirect(f'/squirrel/{Unique_Squirrel_ID}'
+            return redirect(f'/squirrel/{Unique_Squirrel_ID}')
     else:
         form = SForm(instance=squirrel)
 
@@ -52,11 +56,11 @@ def sightings_stats(request):
     foraging_count = Squirrel.objects.values('Foraging').order_by('Foraging').annotate(run_count=Count('Foraging'))
 
     context = {
-            'Running': running_count,
-            'Chasing': chasing_count,
-            'Climbing': climbing_count,
-            'Approaches': approaches_count,
-            'Foraging': foraging_count,
+        'Running': running_count,
+        'Chasing': chasing_count,
+        'Climbing': climbing_count,
+        'Approaches': approaches_count,
+        'Foraging': foraging_count,
     }
 
     return render(request,'squirrels/stats.html',context)

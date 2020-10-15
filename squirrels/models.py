@@ -155,7 +155,7 @@ class Squirrel(models.Model):
     Other_Activities = models.CharField(
 	help_text=_('Other Activities'), 
 	max_length=100,
-	#blank=True,
+	blank=True,
 	)
 
     Kuks = models.CharField(

@@ -32,7 +32,7 @@ def update_squirrel(request, Unique_Squirrel_ID):
         'form':form,
     }
 
-    return render(request,'tracking/update.html',context)
+    return render(request,'squirrels/update.html',context)
 
 
 

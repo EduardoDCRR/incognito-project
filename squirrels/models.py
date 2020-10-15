@@ -8,9 +8,9 @@ import uuid
 
 class Squirrel(models.Model):
     X = models.FloatField(
-            help_text=_('X axis'), 
-            null=True,
-            )
+        help_text=_('X axis'), 
+        null=True,
+        )
 
     Y = models.FloatField(
         help_text=_('Y axis'), 

@@ -16,7 +16,7 @@ class Command(BaseCommand):
         file_ = options['data']
         
         with open(file_) as fp:
-            reader=csv.DictReader(fb)
+            reader=csv.DictReader(fp)
             d=list(reader)
 
         for item in d:

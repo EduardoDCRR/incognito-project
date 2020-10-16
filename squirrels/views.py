@@ -65,5 +65,10 @@ def sightings_stats(request):
 
     return render(request,'squirrels/stats.html',context)
 
-
+def map(request, *args, **kwargs):
+    sightings = Squirrel.objects.all()[:70]
+    context={
+            'sightings':sightings
+            }
+    return render(request, 'map/map.html',context)
 

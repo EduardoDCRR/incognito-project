@@ -25,7 +25,6 @@ def update_squirrel(request, Unique_Squirrel_ID):
         if form.is_valid():
             form.save()
             return redirect(f'squirrels/{Unique_Squirrel_ID}')
-            return redirect(f'/squirrels/{Unique_Squirrel_ID}')
     else:
         form = SForm(instance=squirrel)
 

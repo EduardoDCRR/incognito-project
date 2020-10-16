@@ -9,8 +9,15 @@ from django.db.models import Count
 
 
 def sightings(request):
-    all_squirrels = Squirrel.objects.all()
+
     data = ['Unique_Squirrel_ID','Date','X','Y']
+
+    for row in Squirrel.objects.all().reverse():
+        if Squirrel.objects.filter(Unique_Squirrel_ID=row.Unique_Squirrel_ID).count() > 1:
+            row.delete()
+
+    all_squirrels = Squirrel.objects.all()
+
     context = {
             'Squirrels': all_squirrels,
             'fields':data,

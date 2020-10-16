@@ -19,8 +19,8 @@
              <p class="card-text">
                 <div class="squirrel-id">
                         <ul>
-	    <li><a href="{% url 'map' %}">Map</a></li>
-            <li><a href="{% url 'add' %}">Add a Sighting</a></li>
+	    <p><a href="{% url 'map' %}">Map</a></p>
+            <p><a href="{% url 'add' %}">Add a Sighting</a></p>
                 {% for squirrel in Squirrels %}
                 <li><a href="{{ squirrel.Unique_Squirrel_ID }}">{{ squirrel.Unique_Squirrel_ID }}</a></li>
                 {% endfor %}

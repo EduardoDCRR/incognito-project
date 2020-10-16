@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from .models import Squirrel
 from .forms import SForm
+from django.db.models import Count
 
 
 def sightings(request):
@@ -54,18 +55,23 @@ def sightings_add(request):
 
 def sightings_stats(request):
 
-    running_count = Squirrel.objects.values('Running').order_by('Running').annotate(run_count=Count('Running'))
-    chasing_count = Squirrel.objects.values('Chasing').order_by('Chasing').annotate(run_count=Count('Chasing'))
-    climbing_count = Squirrel.objects.values('Climbing').order_by('Climbing').annotate(run_count=Count('Climbing'))
-    approaches_count = Squirrel.objects.values('Approaches').order_by('Approaches').annotate(run_count=Count('Approaches'))
-    foraging_count = Squirrel.objects.values('Foraging').order_by('Foraging').annotate(run_count=Count('Foraging'))
+    running_count = Squirrel.objects.values('Running').order_by('Running').annotate(running_count=Count('Running'))
+    chasing_count = Squirrel.objects.values('Chasing').order_by('Chasing').annotate(chasing_count=Count('Chasing'))
+    climbing_count = Squirrel.objects.values('Climbing').order_by('Climbing').annotate(climbing_count=Count('Climbing'))
+    approaches_count = Squirrel.objects.values('Approaches').order_by('Approaches').annotate(approaches_count=Count('Approaches'))
+    foraging_count = Squirrel.objects.values('Foraging').order_by('Foraging').annotate(foraging_count=Count('Foraging'))
+    running = running_count[3]['running_count']
+    chasing = chasing_count[3]['chasing_count']
+    climbing = climbing_count[3]['climbing_count']
+    approaches = approaches_count[3]['approaches_count']
+    foraging = foraging_count[3]['foraging_count']
 
     context = {
-        'Running': running_count,
-        'Chasing': chasing_count,
-        'Climbing': climbing_count,
-        'Approaches': approaches_count,
-        'Foraging': foraging_count,
+        'Running': running,
+        'Chasing': chasing,
+        'Climbing': climbing,
+        'Approaches': approaches,
+        'Foraging': foraging,
     }
 
     return render(request,'squirrels/stats.html',context)

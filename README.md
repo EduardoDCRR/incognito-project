@@ -39,8 +39,11 @@ This page contains the Uniqued Id of every squirrel detected on Central Park and
   To update a Squirrel simply click on the Unique Id displayed on the list of Squirrels of the Main Page
   Also accesible through /sightings/<Unique Id of the Squirrel>
   
-## Group Members
+## Group Name
 Group Incognito
+
+## Members
+
 UNIs:[ed2911,nd2673]
 
 

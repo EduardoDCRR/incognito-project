@@ -7,6 +7,8 @@ from squirrels.models import Squirrel
 
 
 class Command(BaseCommand):
+    help = 'adding updated data into file'
+    
     def add_arguments(self, parser):
         parser.add_argument('data')
 

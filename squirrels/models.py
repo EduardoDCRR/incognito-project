@@ -39,7 +39,7 @@ class Squirrel(models.Model):
         )
 
     Date = models.IntegerField(
-        help_text=_('Date'),
+        help_text=_('Date MMDDYYYY'),
         null=True
         )
 

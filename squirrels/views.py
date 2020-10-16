@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 from .models import Squirrel
 from .forms import SForm
 from django.db.models import Count
@@ -39,19 +40,19 @@ def update_squirrel(request, Unique_Squirrel_ID):
 
 
 def sightings_add(request):
-    squirrel = Squirrel.objects.create()
-
-    context = {
-            'squirrel': squirrel,
-    }
     if request.method == 'POST':
-        form = SForm(request.POST, instance=squirrel)
+        form = SForm(request.POST)
         if form.is_valid():
             form.save()
-            return JsonResponse({})
-        else:
-            return JsonResponse({'errors':form.errors},status=400)
-    return render(request,'squirrels/add.html',context)
+            return JsonResponse({}) 
+    else:
+        form = SForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'squirrels/add.html', context)
 
 def sightings_stats(request):
 

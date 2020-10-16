@@ -1,13 +1,48 @@
-<!doctype html>
-<html>
-  <body>
-    <form method="post">
+{% extends 'squirrels/base.html' %}
+
+{% load static %}
+
+{% block title %} - New Squirrel{% endblock %}
+
+{% block main %}
+<head>
+    <h1 class="Sightings">Add a Squirrel Sighting:</h1>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+        <div class="col-md-8">
+          <div class="card mb-8 shadow-sm">
+             <p class="card-text">
+                <div class="squirrel-id">
+                        <form method="post">
       {% csrf_token %}
-      
       {{ form.as_p }}
       <br>
       <input type="submit" name="Submit">
     </form>
-  </body>
-</html>
-
+                </div>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_footer %}
+  <script>
+    function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+      }
+    });
+  </script>
+  {% endblock %}

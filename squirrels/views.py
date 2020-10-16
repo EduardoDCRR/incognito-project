@@ -12,7 +12,7 @@ def sightings(request):
     data = ['Unique_Squirrel_ID','Date','X','Y']
 
     for row in Squirrel.objects.all().reverse():
-        if Squirrel.objects.filter(Unique_Squirrel_ID=row.Unique_Squirell_ID).count() > 1:
+        if Squirrel.objects.filter(Unique_Squirrel_ID=row.Unique_Squirrel_ID).count() > 1:
             row.delete()
 
     all_squirrels = Squirrel.objects.all()

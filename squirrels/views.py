@@ -7,11 +7,11 @@ from .forms import SForm
 from django.db.models import Count
 
 
-for row in Squirell.objects.all().reverse():
+for row in Squirrel.objects.all().reverse():
     if Squirrel.objects.filter(Unique_Squirrel_ID=row.Unique_Squirell_ID).count() > 1:
         row.delete()
-
 def sightings(request):
+
     all_squirrels = Squirrel.objects.all()
     data = ['Unique_Squirrel_ID','Date','X','Y']
     context = {

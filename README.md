@@ -40,6 +40,9 @@ This page contains the Uniqued Id of every squirrel detected on Central Park and
   Also accesible through /sightings/<Unique Id of the Squirrel>
   
 ## Group Members
-Eduardo Diaz Corona (ed2911)
-Neli Davtyan (nd2673)
+Group Incognito
+UNIs:[ed2911,nd2673]
+
+
+
 

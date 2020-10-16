@@ -17,6 +17,10 @@ def sightings(request):
 
 def update_squirrel(request, Unique_Squirrel_ID):
     squirrel = Squirrel.objects.get(Unique_Squirrel_ID=Unique_Squirrel_ID)
+
+    context = {
+            'squirrel': squirrel,
+    }
     if request.method == 'POST':
         form = SForm(request.POST, instance=squirrel)
         if form.is_valid():
@@ -34,15 +38,19 @@ def update_squirrel(request, Unique_Squirrel_ID):
 
 
 def sightings_add(request):
+    squirrel = Squirrel.objects.create()
+
+    context = {
+            'squirrel': squirrel,
+    }
     if request.method == 'POST':
-        form = SForm(request.POST)
+        form = SForm(request.POST, instance=squirrel)
         if form.is_valid():
             form.save()
             return JsonResponse({})
         else:
             return JsonResponse({'errors':form.errors},status=400)
-    
-    return JsonResponse({})
+    return render(request,'squirrels/add.html',context)
 
 def sightings_stats(request):
 

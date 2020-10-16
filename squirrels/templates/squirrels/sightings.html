@@ -1,40 +1,55 @@
-<!doctype html>
-<html lang="en">
-  <head>
-  	<h1 class="Sightings">Squirrel Sightings</h1>
-  	
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends 'squirrels/base.html' %}
+  
+{% load static %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet"
-href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-crossorigin=""/>
-<!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-crossorigin=""></script>
+{% block title %}{% endblock %}
 
+{% block main %}
 
-           
-    <ul>
-  		{% for squirrel in Squirrels %}
-    		<li><a href="{{ squirrel.Unique_Squirrel_ID }}">{{ squirrel.Unique_Squirrel_ID }}</a></li>
-  		{% endfor %}
-	</ul>   
+<head>
+        <h1 class="Sightings">Welcome to the Squirrel Sighting Website</h1>
+        <h2 class="Sightings">{{ squirrel.Unique_Squirrel_ID }} </h2>
 
-
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+        <div class="col-md-8">
+          <div class="card mb-8 shadow-sm">
+             <p class="card-text">
+                <div class="squirrel-id">
+                        <ul>
+	    <li><a href="{% url 'map' %}">Map</a></li>
+            <li><a href="{% url 'add' %}">Add a Sighting</a></li>
+                {% for squirrel in Squirrels %}
+                <li><a href="{{ squirrel.Unique_Squirrel_ID }}">{{ squirrel.Unique_Squirrel_ID }}</a></li>
+                {% endfor %}
+        </ul>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  </body>
-</html>
+                </div>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_footer %}
+  <script>
+    function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
 
-
+    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+      }
+    });
+  </script>
+{% endblock %}

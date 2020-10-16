@@ -68,11 +68,11 @@ def sightings_stats(request):
     climbing_count = Squirrel.objects.values('Climbing').order_by('Climbing').annotate(climbing_count=Count('Climbing'))
     approaches_count = Squirrel.objects.values('Approaches').order_by('Approaches').annotate(approaches_count=Count('Approaches'))
     foraging_count = Squirrel.objects.values('Foraging').order_by('Foraging').annotate(foraging_count=Count('Foraging'))
-    running = running_count[3]['running_count']
-    chasing = chasing_count[3]['chasing_count']
-    climbing = climbing_count[3]['climbing_count']
-    approaches = approaches_count[3]['approaches_count']
-    foraging = foraging_count[3]['foraging_count']
+    running = running_count[2]['running_count']
+    chasing = chasing_count[2]['chasing_count']
+    climbing = climbing_count[2]['climbing_count']
+    approaches = approaches_count[2]['approaches_count']
+    foraging = foraging_count[2]['foraging_count']
 
     context = {
         'Running': running,

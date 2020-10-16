@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from .models import Squirrel
-from .form import SForm
+from .forms import SForm
 
 
 def index(request):

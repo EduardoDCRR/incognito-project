@@ -1,28 +1,41 @@
-<!doctype html>
-<html lang="en">
-  <head>
+{% extends 'squirrels/base.html' %}
+
+{% load static %}
+
+{% block title %} - New Squirrel{% endblock %}
+
+{% block main %}
+<head>
     <h1 class="Sightings">Here are some Squirrel Stats: How many are...</h1>
-      <title>Sighting Stats</title>
+    <title>Sighting Stats</title>
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+        <div class="col-md-8">
+                <div class="squirrel-id">
       <style>
-      table, td, th { 
-      padding: 10px; 
-      border: 2px solid #1c87c9;
-      border-radius: 5px;
-      background-color: #e5e5e5;
+            table, td,th {
+      border: 1px solid black;
+      padding: 15px;
+      background-color: #f5f5f5;
       text-align: center;
       }
+      th {
+  color: black;
+}
+      tr:nth-child(even) {background-color: #f2f2f2;}
     </style>
-    </head>
         <body>
           <table>
             <tr>
               <th>Running</th>
               <th>Chasing</th>
               <th>Climbing</th>
-              <th>Approaches</th>
-              <th>Forages</th>
+              <th>Approaching</th>
+              <th>Foraging</th>
                 <tr>
- 
+
                   <td>{{ Running }}</td>
                   <td>{{ Chasing }}</td>
                   <td>{{ Climbing }}</td>
@@ -33,3 +46,26 @@
 
           </table>
         </body>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block extra_footer %}
+  <script>
+    function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    var csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+      }
+    });
+  </script>
+{% endblock %}

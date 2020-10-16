@@ -6,9 +6,6 @@ from .models import Squirrel
 from .forms import SForm
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the poll index.")
-
 def sightings(request):
     all_squirrels = Squirrel.objects.all()
     data = ['Unique_Squirrel_ID','Date','X','Y']

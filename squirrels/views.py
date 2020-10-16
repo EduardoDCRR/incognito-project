@@ -64,3 +64,6 @@ def sightings_stats(request):
     }
 
     return render(request,'squirrels/stats.html',context)
+
+
+

@@ -46,7 +46,7 @@ Group Incognito
 
 UNIs:[ed2911,nd2673]
 
-## Link to Repository 
+## Link to GitHub Repository 
 
 https://github.com/EduardoDCRR/incognito-project.git
 

@@ -42,6 +42,11 @@ class Squirrel(models.Model):
         help_text=_('Date MMDDYYYY'),
         null=True
         )
+    #Date = models.DateField(
+        #null = True,
+        #blank = True
+    #)
+
 
 
     JUVENILE = 'Juvenile'

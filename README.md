@@ -10,9 +10,15 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all inc
 ```bash
 pip install -r requirements.txt
 ```
+## Import data
+
+Run the following import command to import the data needed:
+
+```bash
+python manage.py import_squirrel_data /path/to/data.csv
+```
 
 ## App
-
 The name of this app is simply Squirrels
 
 ## Pages
@@ -44,11 +50,23 @@ Group Incognito
 
 ## Members
 
-UNIs:[ed2911,nd2673]
+UNIs:[ed2911,nd2673, ne2323]
+
+## Help?
+
+If you have questions or encounter a problem, please contact the software engineerings via their email addresses:
+
+Neli Davtyan nd2673@columbia.edu
+Eduardo DCRR ed2911@columbia.edu
+Nouhaila Elmajidi ne2323@columbia.edu
+
+
 
 ## Link to GitHub Repository 
 
 https://github.com/EduardoDCRR/incognito-project.git
+
+
 
 
 

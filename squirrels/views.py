@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from .models import Squirrel
 from .forms import SForm
 from django.db.models import Count
+from django.http import HttpResponseRedirect
 
 
 def sightings(request):
@@ -34,7 +35,8 @@ def update_squirrel(request, Unique_Squirrel_ID):
         form = SForm(request.POST, instance=squirrel)
         if form.is_valid():
             form.save()
-            return redirect(f'squirrels/{Unique_Squirrel_ID}')
+            return redirect(f'{squirrels/Unique_Squirrel_ID}')
+            
     else:
         form = SForm(instance=squirrel)
 
@@ -61,6 +63,7 @@ def sightings_add(request):
 
     return render(request, 'squirrels/add.html', context)
 
+    
 def sightings_stats(request):
 
     running_count = Squirrel.objects.values('Running').order_by('Running').annotate(running_count=Count('Running'))
@@ -90,4 +93,7 @@ def map(request, *args, **kwargs):
             'sightings':sightings
             }
     return render(request, 'map/map.html',context)
+
+def confirm(request):
+	return HttpResponse("Your request was successfully accomplished")
 
